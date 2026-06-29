@@ -71,12 +71,15 @@ function provasAleatorias(x = 2) {
 async function gerarDb(x) {
     provasAleatorias(x)
     provas = []
+    document.getElementById('btnCriar').disabled=true
     for (const [i, e] of anos.entries()) {
         await ApiGet(e)
-
+        
         await delay(5000)
     }
     localStorage.setItem('provas', JSON.stringify(provas))
+    organizarPorArea()
+    document.getElementById('btnCriar').disabled=false
 }
 
 function descompactarProva() {
@@ -120,7 +123,6 @@ function organizarPorArea() {
 }
 
 gerarDb(5)
-organizarPorArea()
 
 
 
