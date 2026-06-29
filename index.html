@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./scr/styles/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+        <form>
+
+            <input type="email" id="email" placeholder="digite seu email ...">
+            <input type="number" id="watzap" placeholder="digite seu numero ...">
+
+            <select name="enviarPara" id="enviarGabarito">
+                <option value="" selected></option>
+                <option value="email">E-mail</option>
+                <option value="watzap">watzap</option>
+                <option value="ambos">Ambos</option>
+
+            </select>
+            <button type="button" id="btnAcessarIndex">Acessar</button>
+        </form>
+
+
+
+        <form>
+            <select name="Tamanho" id="Tamanho">
+                <option value="" selected></option>
+                <option value=20>Passatempo</option>
+                <option value=40>Media</option>
+                <option value=80>Simulado</option>
+            </select>
+
+            <select name="linguem" id="linguem">
+                <option value="ingles">ingles</option>
+                <option value="espanhol">espanhol</option>
+            </select>
+
+            <button type="button" id="btnCriar" onclick="CriarComponent()">Teste Criar</button>
+        </form>
+
+        <div id="container-quest">
+
+        </div>
+
+
+
+
+    </div>
+    <script  src="./scr/logic/components.js"></script>
+    <script type="module" src="./scr/logic/navigation.js"></script>
+    <script type="module" src="./scr/logic/localStorageData.js"></script>
+    <script src="./scr/logic/api.js"></script>
+</body>
+
+</html>

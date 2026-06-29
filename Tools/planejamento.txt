@@ -1,0 +1,578 @@
+Acho que essa é uma excelente ideia para portfólio. Ela demonstra integração com API externa, manipulação de estado, interface rica, correção de provas e envio automático de resultados. É um projeto bem mais interessante do que um simples CRUD.
+
+Eu faria algumas mudanças na arquitetura para que o projeto pareça um sistema profissional.
+
+Nome do projeto
+
+Algumas sugestões:
+
+ConcursoSim
+SimulaProvas
+Aprova+
+QuestSim
+ConcursoLab
+Gabarito IA
+Tecnologias
+HTML5
+CSS3
+JavaScript Vanilla
+Bootstrap 5
+API das Questões
+EmailJS (envio por e-mail)
+WhatsApp (link ou API oficial dependendo da necessidade)
+Fluxo do sistema
+Configuração
+        ↓
+Selecionar prova
+        ↓
+Resolver questões
+        ↓
+Corrigir
+        ↓
+Exibir desempenho
+        ↓
+Enviar resultado
+Tela 1 — Configuração
+
+Essa tela seria simples.
+
++-------------------------------------------+
+
+      Simulador de Concurso
+
+---------------------------------------------
+
+API KEY
+[____________________________]
+
+Enviar resultado para
+
+( ) Email
+
+Email
+[____________________________]
+
+ou
+
+( ) WhatsApp
+
+DDD
+[__]
+
+Número
+[______________]
+
+[ Salvar Configuração ]
+
+
+Esses dados podem ser gravados no LocalStorage.
+
+Tela 2 — Configuração da prova
+
+Aqui entra o diferencial do ENEM.
+
+---------------------------------
+
+Criar Simulado ENEM
+
+---------------------------------
+
+
+Ano da prova
+
+
+▼ 2025
+
+
+Área
+
+
+▼ Linguagens
+
+▼ Ciências Humanas
+
+▼ Ciências da Natureza
+
+▼ Matemática
+
+
+Número de questões
+
+
+20
+
+
+Tipo:
+
+
+( ) Aleatórias
+
+( ) Apenas uma área
+
+
+Dificuldade:
+
+
+( ) Fácil
+
+( ) Média
+
+( ) Difícil
+
+(•) Todas
+
+
+Tempo
+
+
+90 minutos
+
+
+
+[ Gerar Simulado ]
+
+Tela 3 — Prova
+
+Interface estilo plataforma real.
+
+ENEM 2025
+
+Questão 12/20
+
+
+Tempo:
+
+00:42:15
+
+
+Progresso:
+
+
+████████░░░░░
+
+
+--------------------------------
+
+
+Texto da questão
+
+
+Imagem da questão
+
+
+--------------------------------
+
+
+A)
+
+( ) alternativa
+
+
+B)
+
+( ) alternativa
+
+
+C)
+
+( ) alternativa
+
+
+D)
+
+( ) alternativa
+
+
+E)
+
+( ) alternativa
+
+
+
+← Anterior       Próxima →
+
+Banco de dados da questão
+
+Adaptado para ENEM:
+
+const questao = {
+
+id:1,
+
+ano:2025,
+
+area:"Matemática",
+
+materia:"Geometria",
+
+enunciado:"Texto da questão",
+
+imagem:"url",
+
+alternativas:[
+
+"A",
+"B",
+"C",
+"D",
+"E"
+
+],
+
+correta:"C",
+
+respostaUsuario:null
+
+}
+
+Objeto da prova
+const prova = {
+
+
+ano:"2025",
+
+
+area:"Matemática",
+
+
+quantidade:20,
+
+
+tempo:5400,
+
+
+questoes:[],
+
+
+respostas:[],
+
+
+inicio:"",
+
+
+fim:""
+
+
+}
+
+Estrutura de pastas
+enemlab/
+
+│
+├── index.html
+├── prova.html
+├── resultado.html
+│
+├── css/
+│
+│    style.css
+│
+├── js/
+│
+│    api.js
+│
+│    config.js
+│
+│    prova.js
+│
+│    resultado.js
+│
+│    timer.js
+│
+│    storage.js
+│
+│    email.js
+│
+│    pdf.js
+│
+│
+├── assets/
+│
+│    logo.png
+│
+│    icons/
+│
+│
+└── README.md
+
+Organização JavaScript
+api.js
+
+Responsável pela API ENEM.
+
+Funções:
+
+buscarProvas()
+
+buscarQuestoes()
+
+buscarQuestao(id)
+
+buscarGabarito()
+
+storage.js
+
+Controle do navegador.
+
+salvarUsuario()
+
+carregarUsuario()
+
+
+salvarProva()
+
+
+continuarProva()
+
+
+salvarHistorico()
+
+prova.js
+
+Responsável pela aplicação.
+
+Funções:
+
+carregarQuestao()
+
+
+selecionarResposta()
+
+
+proximaQuestao()
+
+
+voltarQuestao()
+
+
+finalizarProva()
+
+timer.js
+
+Cronômetro.
+
+Recursos:
+
+contagem regressiva
+salvar tempo
+finalizar automático
+
+Exemplo:
+
+if(tempo == 0){
+
+ finalizarProva()
+
+}
+
+Tela Resultado
+
+Mais profissional:
+
+---------------------------------
+
+Resultado ENEM
+
+---------------------------------
+
+
+Nota:
+
+
+16/20
+
+
+80%
+
+
+Tempo:
+
+54 minutos
+
+
+---------------------------------
+
+
+Desempenho por área:
+
+
+Matemática
+
+█████████
+
+
+Linguagens
+
+██████
+
+
+Humanas
+
+████████
+
+
+---------------------------------
+
+Questões erradas:
+
+
+Questão 4
+
+
+Sua resposta:
+
+B
+
+
+Correta:
+
+D
+
+
+
+Explicação:
+
+
+Você errou porque...
+
+
+Gráficos
+
+Usar Chart.js:
+
+Exemplo:
+
+Desempenho
+
+Matemática      85%
+
+Humanas         70%
+
+Linguagens      90%
+
+Natureza        60%
+
+Histórico de provas
+
+Adicionar:
+
+Minhas provas
+
+
+ENEM 2025
+
+Matemática
+
+18/20
+
+
+ENEM 2024
+
+Humanas
+
+14/20
+
+
+Salvar:
+
+historico=[
+
+{
+
+data:"28/06/2026",
+
+area:"Matemática",
+
+nota:18
+
+}
+
+]
+
+Relatório automático
+
+Gerar:
+
+PDF
+
+Contendo:
+
+Nome
+Ano ENEM
+Área
+Quantidade questões
+Acertos
+Erros
+Percentual
+Tempo
+Gráfico
+Questões para revisar
+Diferencial com IA (fica muito forte no portfólio)
+
+Depois da correção:
+
+Enviar os erros para uma IA:
+
+Exemplo:
+
+Analise meu desempenho:
+
+Errei:
+
+Matemática:
+- Função
+- Probabilidade
+
+Humanas:
+- História do Brasil
+
+
+Crie um plano de estudo de 7 dias.
+
+
+Resultado:
+
+Plano recomendado:
+
+
+Dia 1
+
+Revisar função afim
+
+
+Dia 2
+
+Resolver 20 questões de probabilidade
+
+
+Dia 3
+
+Revisar República Velha
+
+README do projeto ficaria muito forte:
+# EnemLab
+
+Simulador inteligente de provas ENEM.
+
+Tecnologias:
+
+HTML
+CSS
+Javascript
+Bootstrap
+API ENEM
+
+
+Funcionalidades:
+
+✔ Simulados personalizados
+✔ Correção automática
+✔ Cronômetro
+✔ Histórico
+✔ Gráficos
+✔ Exportação PDF
+✔ Relatório por desempenho
+✔ Recomendações de estudo
+
+
+Esse projeto fica com cara de plataforma SaaS educacional, bem mais valorizado no portfólio do que apenas "site que responde questões".
