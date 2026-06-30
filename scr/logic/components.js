@@ -80,6 +80,7 @@ class QuestionComponet {
         const vincularEventos = (card) => {
             const botao = card.querySelector('.btn-verificar');
             const feedback = card.querySelector('.feedback-resultado');
+            botao.classList.add('btn-padrao')
             const q = this.questao
             botao.addEventListener('click', () => {
                 // Busca qual input do tipo radio foi marcado pelo usuário neste card

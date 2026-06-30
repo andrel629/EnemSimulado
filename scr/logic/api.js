@@ -72,14 +72,20 @@ async function gerarDb(x) {
     provasAleatorias(x)
     provas = []
     document.getElementById('btnCriar').disabled=true
+    document.getElementById('btnCriar').classList.add('btn-loading')
+    document.getElementById('btnCriar').classList.remove('btn-padrao')
+    document.getElementById('btnCriar').innerHTML='preparando...'
     for (const [i, e] of anos.entries()) {
         await ApiGet(e)
         
-        await delay(5000)
+        await delay(4000)
     }
     localStorage.setItem('provas', JSON.stringify(provas))
     organizarPorArea()
     document.getElementById('btnCriar').disabled=false
+    document.getElementById('btnCriar').classList.remove('btn-loading')
+    document.getElementById('btnCriar').classList.add('btn-padrao')
+    document.getElementById('btnCriar').innerHTML='Gerar'
 }
 
 function descompactarProva() {
@@ -122,7 +128,7 @@ function organizarPorArea() {
     localStorage.setItem('matematica',JSON.stringify(matematica))
 }
 
-gerarDb(5)
+gerarDb(3)
 
 
 
