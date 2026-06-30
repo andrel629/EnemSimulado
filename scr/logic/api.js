@@ -121,11 +121,26 @@ function organizarPorArea() {
 
         });
     }
-
+    //embaralhar as questoes antes de enviar
+    embaralhar(linguagens)
+    embaralhar(cienciasHumanas)
+    embaralhar(cienciasNatureza)
+    embaralhar(matematica)
     localStorage.setItem('linguagens',JSON.stringify(linguagens))
     localStorage.setItem('CienciasHumanas',JSON.stringify(cienciasHumanas))
     localStorage.setItem('CienciasNatureza',JSON.stringify(cienciasNatureza))
     localStorage.setItem('matematica',JSON.stringify(matematica))
+}
+
+function embaralhar(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+
+    return a;
 }
 
 gerarDb(3)
