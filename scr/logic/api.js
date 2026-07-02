@@ -143,7 +143,57 @@ function embaralhar(a) {
     return a;
 }
 
-gerarDb(3)
+
+
+//consulmit api de ia passando a nota e fazer ela gerar uma mensagem para enviar com plano de aula principais pontos etc...
+
+async function chamarBot(chave=) {
+    dadosDaQuestaoBot=JSON.parse(localStorage.getItem('dadosDeQuestion'))
+  try {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${chave}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model:"cohere/north-mini-code:free",
+        messages: [
+          {
+            role: "system",
+            content: `Você é um professor corrigindo um simulado do enem para preparar um plano de aula para o aluno`
+          },
+          {
+            role: "user",
+            content:`${JSON.stringify(dadosDaQuestao)} levando em conta os acertos e erros planeje a rotina de estudos do aluno para essa semana`
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    if (!data.choices || !data.choices[0]) {
+      throw new Error(data.error?.message || 'Resposta inválida da API.');
+    }
+
+    localStorage.setItem('chamarBot',JSON.stringify(data.choices[0].message.content))
+    
+    return data.choices[0].message?.content || 'Nenhuma resposta foi recebida.';
+
+  } catch (error) {
+    console.error('Erro ao chamar API:', error);
+    return `Erro: ${error.message || 'Falha na requisição.'}`;
+  }
+  
+  
+  
+}
+
+document.addEventListener("DOMContentLoaded",()=>{gerarDb(3)})
+
+
+
+
 
 
 

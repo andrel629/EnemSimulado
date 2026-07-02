@@ -99,13 +99,13 @@ class QuestionComponet {
                 if (respostaUsuario === respostaCorreta) {
                     feedback.textContent = "✓ Resposta Correta!";
                     feedback.classList.add('correto');
-                    dadosDaQuestao.push({ Question: q, result: 'Acertou' })
+                    dadosDaQuestao.push({ Question: q,AlternativaEscolhida:inputSelecionado, result: 'Acertou' })
                     localStorage.setItem('dadosDeQuestion', JSON.stringify(dadosDaQuestao))
 
                 } else {
                     feedback.textContent = "✕ Resposta Errada. Tente novamente!";
                     feedback.classList.add('errado');
-                    dadosDaQuestao.push({ Question: q, result: 'Errou' })
+                    dadosDaQuestao.push({ Question: q,AlternativaEscolhida:inputSelecionado, result: 'Errou' })
                     localStorage.setItem('dadosDeQuestion', JSON.stringify(dadosDaQuestao))
                 }
 
@@ -150,6 +150,8 @@ async function desaparecer() {
     }
     
 }
+
+document.getElementById('btnCriar').addEventListener('click',CriarComponent)
 
 async function CriarComponent() {
 
@@ -208,8 +210,8 @@ function geraListas() {
 
             l = l.slice(0, 1);
             h = h.slice(0, 1);
-            n = n.slice(0, 1);
-            m = m.slice(0, 1);
+            n = [];
+            m = [];
             break;
     }
     ques = [...l, ...h, ...n, ...m]
@@ -220,11 +222,14 @@ function geraListas() {
 function resultado() {
     let acertos = 0
     let nota = 0
+    
     dadosDaQuestao.forEach((el, id) => {
         el.result == 'Acertou' ? acertos++ : console.log('');
     })
     nota = (acertos / dadosDaQuestao.length) * 100
 
-    return nota
+    localStorage.setItem("nota",nota)
 
+    return nota
 }
+
